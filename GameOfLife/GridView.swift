@@ -15,15 +15,15 @@ struct GridView: View {
     
     var body: some View {
         Grid(horizontalSpacing: 1, verticalSpacing: 1) {
-            ForEach(cell.cellList.indices, id: \.self) { row in
+            ForEach(0..<cell.getRowSize(), id: \.self) { row in
                 GridRow() {
-                    ForEach(cell.cellList[row].indices, id: \.self) { col in
+                    ForEach(0..<cell.getColSize(), id: \.self) { col in
                         Rectangle()
                             .foregroundColor(cell.cellList[row][col] ? .black : .gray)
                             .frame(width: 8, height: 8)
                             .fixedSize()
                             .onTapGesture {
-                                cell.cellList[row][col].toggle()
+                                cell.toggleCellInCellList(row: row, col: col)
                             }
                     }
                 }

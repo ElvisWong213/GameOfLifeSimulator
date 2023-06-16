@@ -7,16 +7,31 @@
 
 import Foundation
 
+/// Control the all the action of the cell
 class Cell: ObservableObject {
+    /// Store all the state (True = alive, False = dead)
     @Published var cellList: [[Bool]]
-    private final var size = 60
-    
-    init() {
-        self.cellList = Array(repeating: Array(repeating: false, count: size), count: size)
+    /// The number of row
+    private var rowSize: Int
+    /// The number of column
+    private var colSize: Int
+        
+    /// Constructor of the Cell class
+    /// - Parameters:
+    ///   - rowSize: Number of row
+    ///   - colSize: Number of column
+    init(rowSize: Int, colSize: Int) {
+        self.rowSize = rowSize
+        self.colSize = colSize
+        self.cellList = Array(repeating: Array(repeating: false, count: colSize), count: rowSize)
     }
     
-    public func CellLives(row: Int, col: Int) {
-        if (row < 0 || col < 0 || row >= size || col >= size) {
+    /// Set cell to alive
+    /// - Parameters:
+    ///   - row: Index of row
+    ///   - col: Index of column
+    public func setCellAlive(row: Int, col: Int) {
+        if (row < 0 || col < 0 || row >= rowSize || col >= colSize) {
             print("index out of range")
             return
         }
@@ -24,8 +39,13 @@ class Cell: ObservableObject {
         cellList[row][col] = true
     }
     
-    public func CellDead(row: Int, col: Int) {
-        if (row < 0 || col < 0 || row >= size || col >= size) {
+    
+    /// Set cell to dead
+    /// - Parameters:
+    ///   - row: Index of row
+    ///   - col: Index of column
+    public func setCellDead(row: Int, col: Int) {
+        if (row < 0 || col < 0 || row >= rowSize || col >= colSize) {
             print("index out of range")
             return
         }
@@ -34,23 +54,36 @@ class Cell: ObservableObject {
         
     }
     
+    
+    /// Count alive neighbours of the cell
+    /// - Parameters:
+    ///   - row: Index of row
+    ///   - col: Index of column
+    /// - Returns: The number of neighbours
     public func countNeighbours(row: Int, col: Int) -> Int {
         var counter = 0
         
         for r in (row - 1) ... (row + 1) {
             for c in (col - 1) ... (col + 1) {
-                if (r >= 0 && r < size) && (c >= 0 && c < size) {
-                    if r != row || c != col {
-                        if cellList[r][c] {
-                            counter += 1
-                        }
-                    }
+                if (r < 0 || r >= rowSize || c < 0 || c >= colSize) {
+                    continue
+                }
+                if r == row && c == col {
+                    continue
+                }
+                if cellList[r][c] {
+                    counter += 1
                 }
             }
         }
         return counter
     }
     
+    /// Check next generation of the cell
+    /// - Parameters:
+    ///   - row: Index of row
+    ///   - col: Index of column
+    /// - Returns: The state of the cell in next generatiob
     public func checkCellNextGeneration(row: Int, col: Int) -> Bool {
         let numberOfNeighbours = countNeighbours(row: row, col: col)
         if cellList[row][col] == false {
@@ -68,14 +101,40 @@ class Cell: ObservableObject {
         }
     }
     
-    public func getCellList() ->[[Bool]] {
-        return cellList
+    /// Get rowSize
+    /// - Returns: The size of row
+    public func getRowSize() -> Int {
+        return rowSize
     }
     
+    /// Get colSize
+    /// - Returns: The size of column
+    public func getColSize() -> Int {
+        return colSize
+    }
+    
+    /// Get cell state
+    /// - Parameters:
+    ///   - row: Index of row
+    ///   - col: Index of column
+    /// - Returns: The state of the cell (True = alive, False = dead)
+    public func cellIsAlive(row: Int, col: Int) -> Bool {
+        return cellList[row][col]
+    }
+    
+    /// Toggle the cell in cell list
+    /// - Parameters:
+    ///   - row: Index of row
+    ///   - col: Index of column
+    public func toggleCellInCellList(row: Int, col: Int) {
+        cellList[row][col].toggle()
+    }
+    
+    /// Perform the action, update all cell
     public func perform() {
-        var dummyList: [[Bool]] = Array(repeating: Array(repeating: false, count: size), count: size)
-        for row in 0..<size {
-            for col in 0..<size {
+        var dummyList: [[Bool]] = Array(repeating: Array(repeating: false, count: colSize), count: rowSize)
+        for row in 0..<rowSize {
+            for col in 0..<colSize {
                 let result = checkCellNextGeneration(row: row, col: col)
                 dummyList[row][col] = result
             }
@@ -83,18 +142,21 @@ class Cell: ObservableObject {
         cellList = dummyList
     }
     
+    /// Generate random cell to the cell list
     public func randomGenerateCell() {
-        for _ in 0 ..< size * size / 4 {
-            let x = Int.random(in: 0..<size)
-            let y = Int.random(in: 0..<size)
-            CellLives(row: y, col: x)
+        for _ in 0 ..< rowSize * colSize / 4 {
+            let x = Int.random(in: 0..<rowSize)
+            let y = Int.random(in: 0..<colSize)
+            setCellAlive(row: y, col: x)
         }
     }
     
+    /// Reset the cell list
     public func reset() {
-        cellList = Array(repeating: Array(repeating: false, count: size), count: size)
+        cellList = Array(repeating: Array(repeating: false, count: colSize), count: rowSize)
     }
     
+    /// Perform random action
     public func random() {
         reset()
         randomGenerateCell()

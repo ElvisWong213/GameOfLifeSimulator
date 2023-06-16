@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var cell = Cell()
-    @State var start = false
+    @StateObject private var cell = Cell(rowSize: 80, colSize: 80)
+    @State private var start = false
     
     var body: some View {
         VStack {
