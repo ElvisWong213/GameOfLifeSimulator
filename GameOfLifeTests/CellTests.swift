@@ -11,7 +11,7 @@ final class CellTests: XCTestCase {
     private var cell: Cell!
 
     override func setUpWithError() throws {
-        cell = Cell(rowSize: 500, colSize: 500)
+        cell = Cell(rowSize: 1000, colSize: 1000)
     }
 
     override func tearDownWithError() throws {
@@ -26,14 +26,14 @@ final class CellTests: XCTestCase {
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
     }
 
-    func testCellPerformPerformance() throws {
-        // This is an example of a performance test case.
+    func testUpdateCellPerformance() throws {
+        cell.random()
         measure {
-            cell.perform()
+            cell.updateCell()
         }
     }
     
-    func testCellRandomPerformance() throws {
+    func testRandomPerformance() throws {
         measure {
             cell.random()
         }

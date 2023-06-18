@@ -131,7 +131,7 @@ class Cell: ObservableObject {
     }
     
     /// Perform the action, update all cell
-    public func perform() {
+    public func updateCell() {
         var dummyList: [[Bool]] = Array(repeating: Array(repeating: false, count: colSize), count: rowSize)
         for row in 0..<rowSize {
             for col in 0..<colSize {
@@ -144,7 +144,7 @@ class Cell: ObservableObject {
     
     /// Generate random cell to the cell list
     public func randomGenerateCell() {
-        for _ in 0 ..< rowSize * colSize / 4 {
+        for _ in 0 ..< rowSize * colSize / 8 {
             let x = Int.random(in: 0..<rowSize)
             let y = Int.random(in: 0..<colSize)
             setCellAlive(row: y, col: x)

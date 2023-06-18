@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var cell = Cell(rowSize: 80, colSize: 80)
+    @StateObject private var cell = Cell2(rowSize: 50, colSize: 50)
     @State private var start = false
     
     var body: some View {
@@ -17,10 +17,16 @@ struct ContentView: View {
                 .environmentObject(cell)
             HStack {
                 Button("Reset") {
+                    start = false
                     cell.reset()
                 }
                 Button("Start / Stop") {
                     start.toggle()
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        while (start) {
+                            cell.updateCell()
+                        }
+                    }
                 }
                 Button("Random") {
                     cell.random()

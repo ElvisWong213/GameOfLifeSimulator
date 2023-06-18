@@ -15,6 +15,9 @@
 		AAE6C2252A3B65C30036AAF8 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2232A3B65C30036AAF8 /* GridView.swift */; };
 		AAE6C22D2A3BBA740036AAF8 /* CellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C22C2A3BBA740036AAF8 /* CellTests.swift */; };
 		AAE6C2332A3BBBCC0036AAF8 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2222A3B65C20036AAF8 /* Cell.swift */; };
+		AAE6C2352A3CDDDF0036AAF8 /* Cell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2342A3CDDDF0036AAF8 /* Cell2.swift */; };
+		AAE6C2372A3CEB590036AAF8 /* Cell2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2362A3CEB590036AAF8 /* Cell2Tests.swift */; };
+		AAE6C23A2A3D291D0036AAF8 /* Cell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2342A3CDDDF0036AAF8 /* Cell2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,8 @@
 		AAE6C2232A3B65C30036AAF8 /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		AAE6C22A2A3BBA740036AAF8 /* GameOfLifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameOfLifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE6C22C2A3BBA740036AAF8 /* CellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTests.swift; sourceTree = "<group>"; };
+		AAE6C2342A3CDDDF0036AAF8 /* Cell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell2.swift; sourceTree = "<group>"; };
+		AAE6C2362A3CEB590036AAF8 /* Cell2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell2Tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +84,7 @@
 		AAE6C2122A3B65AD0036AAF8 /* GameOfLife */ = {
 			isa = PBXGroup;
 			children = (
+				AAE6C2342A3CDDDF0036AAF8 /* Cell2.swift */,
 				AAE6C2222A3B65C20036AAF8 /* Cell.swift */,
 				AAE6C2232A3B65C30036AAF8 /* GridView.swift */,
 				AAE6C2132A3B65AD0036AAF8 /* GameOfLifeApp.swift */,
@@ -102,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				AAE6C22C2A3BBA740036AAF8 /* CellTests.swift */,
+				AAE6C2362A3CEB590036AAF8 /* Cell2Tests.swift */,
 			);
 			path = GameOfLifeTests;
 			sourceTree = "<group>";
@@ -207,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAE6C2162A3B65AD0036AAF8 /* ContentView.swift in Sources */,
+				AAE6C2352A3CDDDF0036AAF8 /* Cell2.swift in Sources */,
 				AAE6C2142A3B65AD0036AAF8 /* GameOfLifeApp.swift in Sources */,
 				AAE6C2252A3B65C30036AAF8 /* GridView.swift in Sources */,
 				AAE6C2242A3B65C30036AAF8 /* Cell.swift in Sources */,
@@ -217,6 +225,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAE6C23A2A3D291D0036AAF8 /* Cell2.swift in Sources */,
+				AAE6C2372A3CEB590036AAF8 /* Cell2Tests.swift in Sources */,
 				AAE6C22D2A3BBA740036AAF8 /* CellTests.swift in Sources */,
 				AAE6C2332A3BBBCC0036AAF8 /* Cell.swift in Sources */,
 			);
