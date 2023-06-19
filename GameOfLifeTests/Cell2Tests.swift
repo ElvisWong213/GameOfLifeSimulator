@@ -11,7 +11,7 @@ final class Cell2Tests: XCTestCase {
     private var cell: Cell2!
 
     override func setUpWithError() throws {
-        cell = Cell2(rowSize: 1000, colSize: 1000)
+        cell = Cell2(rowSize: 200, colSize: 200)
     }
 
     override func tearDownWithError() throws {

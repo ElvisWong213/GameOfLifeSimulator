@@ -10,17 +10,18 @@ import SwiftUI
 struct GridView: View {
     @EnvironmentObject var cell: Cell2
     @Binding var start: Bool
+    @Binding var cellSize: CGFloat
     
     var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
         
     var body: some View {
-        Grid(horizontalSpacing: 1, verticalSpacing: 1) {
+        LazyVStack(spacing: 1) {
             ForEach(0..<cell.getRowSize(), id: \.self) { row in
-                GridRow() {
+                LazyHStack(spacing: 1) {
                     ForEach(0..<cell.getColSize(), id: \.self) { col in
                         Rectangle()
                             .foregroundColor(cell.isCellExist(row: row, col: col) ? .black : .gray)
-                            .frame(width: 8, height: 8)
+                            .frame(width: cellSize, height: cellSize)
                             .fixedSize()
                             .onTapGesture {
                                 if cell.isCellExist(row: row, col: col) {
@@ -33,11 +34,12 @@ struct GridView: View {
                 }
             }
         }
+        .drawingGroup()
     }
 }
 
 struct GridView_Previews: PreviewProvider {
     static var previews: some View {
-        GridView(start: .constant(false))
+        GridView(start: .constant(false), cellSize: .constant(10.0))
     }
 }

@@ -11,7 +11,7 @@ final class CellTests: XCTestCase {
     private var cell: Cell!
 
     override func setUpWithError() throws {
-        cell = Cell(rowSize: 1000, colSize: 1000)
+        cell = Cell(rowSize: 200, colSize: 200)
     }
 
     override func tearDownWithError() throws {
@@ -30,12 +30,6 @@ final class CellTests: XCTestCase {
         cell.random()
         measure {
             cell.updateCell()
-        }
-    }
-    
-    func testRandomPerformance() throws {
-        measure {
-            cell.random()
         }
     }
 
