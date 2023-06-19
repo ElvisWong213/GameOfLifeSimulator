@@ -11,9 +11,7 @@ struct GridView: View {
     @EnvironmentObject var cell: Cell2
     @Binding var start: Bool
     @Binding var cellSize: CGFloat
-    
-    var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-        
+            
     var body: some View {
         LazyVStack(spacing: 1) {
             ForEach(0..<cell.getRowSize(), id: \.self) { row in
