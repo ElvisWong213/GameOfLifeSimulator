@@ -12,11 +12,6 @@ enum CellError: Error {
     case colIndexOutOfRange(message: String = "Column is out of range")
 }
 
-struct MyCell: Hashable {
-    let row: Int
-    let col: Int
-}
-
 class CellSetViewModel: ObservableObject {
     @Published var cellSet: Set<MyCell>
     @Published var checkCellSet: Set<MyCell>

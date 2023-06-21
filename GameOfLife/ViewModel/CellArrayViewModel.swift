@@ -1,5 +1,5 @@
 //
-//  Cell.swift
+//  CellArrayViewModel.swift
 //  GameOfLife
 //
 //  Created by Elvis on 18/04/2023.
@@ -8,7 +8,7 @@
 import Foundation
 
 /// Control the all the action of the cell
-class CellArray: ObservableObject {
+class CellArrayViewModel: ObservableObject {
     /// Store all the state (True = alive, False = dead)
     @Published var cellList: [[Bool]]
     /// The number of row

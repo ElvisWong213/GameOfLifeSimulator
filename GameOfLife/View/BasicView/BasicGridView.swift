@@ -17,8 +17,7 @@ struct BasicGridView: View {
                 LazyHStack(spacing: 1) {
                     ForEach(0..<cellSetViewModel.getColSize(), id: \.self) { col in
                         Rectangle()
-                            .foregroundColor(cellSetViewModel.isCellExist(row: row, col: col) ? .black : (cellSetViewModel.checkCellSet.contains(MyCell(row: row, col: col)) ? .blue : .gray))
-//                            .foregroundColor()
+                            .foregroundColor(cellSetViewModel.isCellExist(row: row, col: col) ? .black : .gray)
                             .frame(width: cellSize, height: cellSize)
                             .fixedSize()
                             .onTapGesture {

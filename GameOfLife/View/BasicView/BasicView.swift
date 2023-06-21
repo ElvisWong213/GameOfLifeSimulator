@@ -31,8 +31,8 @@ struct BasicView: View {
             }
             HStack {
                 Text("Speed: ")
-                Slider(value: $cellSetViewModel.time, in: 0.001...1)
-                Text("\(cellSetViewModel.getTime()) second")
+                Slider(value: $cellSetViewModel.time, in: 0.001...0.1)
+                Text("\(cellSetViewModel.getTime(), specifier: "%.2f") second")
             }
             .frame(width: 200)
         }
