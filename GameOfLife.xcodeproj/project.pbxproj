@@ -11,14 +11,17 @@
 		AAE6C2162A3B65AD0036AAF8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2152A3B65AD0036AAF8 /* ContentView.swift */; };
 		AAE6C2182A3B65AE0036AAF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAE6C2172A3B65AE0036AAF8 /* Assets.xcassets */; };
 		AAE6C21B2A3B65AE0036AAF8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAE6C21A2A3B65AE0036AAF8 /* Preview Assets.xcassets */; };
-		AAE6C2242A3B65C30036AAF8 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2222A3B65C20036AAF8 /* Cell.swift */; };
-		AAE6C2252A3B65C30036AAF8 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2232A3B65C30036AAF8 /* GridView.swift */; };
-		AAE6C22D2A3BBA740036AAF8 /* CellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C22C2A3BBA740036AAF8 /* CellTests.swift */; };
-		AAE6C2332A3BBBCC0036AAF8 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2222A3B65C20036AAF8 /* Cell.swift */; };
-		AAE6C2352A3CDDDF0036AAF8 /* Cell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2342A3CDDDF0036AAF8 /* Cell2.swift */; };
-		AAE6C2372A3CEB590036AAF8 /* Cell2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2362A3CEB590036AAF8 /* Cell2Tests.swift */; };
-		AAE6C23A2A3D291D0036AAF8 /* Cell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2342A3CDDDF0036AAF8 /* Cell2.swift */; };
+		AAE6C2242A3B65C30036AAF8 /* CellArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2222A3B65C20036AAF8 /* CellArray.swift */; };
+		AAE6C2252A3B65C30036AAF8 /* BasicGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2232A3B65C30036AAF8 /* BasicGridView.swift */; };
+		AAE6C22D2A3BBA740036AAF8 /* CellArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C22C2A3BBA740036AAF8 /* CellArrayTests.swift */; };
+		AAE6C2332A3BBBCC0036AAF8 /* CellArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2222A3B65C20036AAF8 /* CellArray.swift */; };
+		AAE6C2352A3CDDDF0036AAF8 /* CellSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2342A3CDDDF0036AAF8 /* CellSetViewModel.swift */; };
+		AAE6C2372A3CEB590036AAF8 /* CellSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2362A3CEB590036AAF8 /* CellSetTests.swift */; };
+		AAE6C23A2A3D291D0036AAF8 /* CellSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2342A3CDDDF0036AAF8 /* CellSetViewModel.swift */; };
 		AAE6C23D2A40E14F0036AAF8 /* BasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C23C2A40E14F0036AAF8 /* BasicView.swift */; };
+		AAE6C23F2A410C8D0036AAF8 /* TwoGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C23E2A410C8D0036AAF8 /* TwoGroupView.swift */; };
+		AAE6C2412A4123DC0036AAF8 /* CellSetForTwoGroupMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2402A4123DC0036AAF8 /* CellSetForTwoGroupMode.swift */; };
+		AAE6C2492A4260300036AAF8 /* CellSetForTwoGroupMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2402A4123DC0036AAF8 /* CellSetForTwoGroupMode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,13 +41,15 @@
 		AAE6C2172A3B65AE0036AAF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAE6C21A2A3B65AE0036AAF8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AAE6C21C2A3B65AE0036AAF8 /* GameOfLife.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GameOfLife.entitlements; sourceTree = "<group>"; };
-		AAE6C2222A3B65C20036AAF8 /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
-		AAE6C2232A3B65C30036AAF8 /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		AAE6C2222A3B65C20036AAF8 /* CellArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellArray.swift; sourceTree = "<group>"; };
+		AAE6C2232A3B65C30036AAF8 /* BasicGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicGridView.swift; sourceTree = "<group>"; };
 		AAE6C22A2A3BBA740036AAF8 /* GameOfLifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameOfLifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAE6C22C2A3BBA740036AAF8 /* CellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTests.swift; sourceTree = "<group>"; };
-		AAE6C2342A3CDDDF0036AAF8 /* Cell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell2.swift; sourceTree = "<group>"; };
-		AAE6C2362A3CEB590036AAF8 /* Cell2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell2Tests.swift; sourceTree = "<group>"; };
+		AAE6C22C2A3BBA740036AAF8 /* CellArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellArrayTests.swift; sourceTree = "<group>"; };
+		AAE6C2342A3CDDDF0036AAF8 /* CellSetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSetViewModel.swift; sourceTree = "<group>"; };
+		AAE6C2362A3CEB590036AAF8 /* CellSetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSetTests.swift; sourceTree = "<group>"; };
 		AAE6C23C2A40E14F0036AAF8 /* BasicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicView.swift; sourceTree = "<group>"; };
+		AAE6C23E2A410C8D0036AAF8 /* TwoGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoGroupView.swift; sourceTree = "<group>"; };
+		AAE6C2402A4123DC0036AAF8 /* CellSetForTwoGroupMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSetForTwoGroupMode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,13 +91,12 @@
 		AAE6C2122A3B65AD0036AAF8 /* GameOfLife */ = {
 			isa = PBXGroup;
 			children = (
-				AAE6C23B2A40DFC70036AAF8 /* Cell */,
-				AAE6C2232A3B65C30036AAF8 /* GridView.swift */,
-				AAE6C2132A3B65AD0036AAF8 /* GameOfLifeApp.swift */,
-				AAE6C2152A3B65AD0036AAF8 /* ContentView.swift */,
-				AAE6C23C2A40E14F0036AAF8 /* BasicView.swift */,
-				AAE6C2172A3B65AE0036AAF8 /* Assets.xcassets */,
+				AAE6C2482A425FE60036AAF8 /* ViewModel */,
+				AAE6C2472A425FDB0036AAF8 /* View */,
+				AAE6C2462A425FD10036AAF8 /* Model */,
 				AAE6C21C2A3B65AE0036AAF8 /* GameOfLife.entitlements */,
+				AAE6C2132A3B65AD0036AAF8 /* GameOfLifeApp.swift */,
+				AAE6C2172A3B65AE0036AAF8 /* Assets.xcassets */,
 				AAE6C2192A3B65AE0036AAF8 /* Preview Content */,
 			);
 			path = GameOfLife;
@@ -109,19 +113,46 @@
 		AAE6C22B2A3BBA740036AAF8 /* GameOfLifeTests */ = {
 			isa = PBXGroup;
 			children = (
-				AAE6C22C2A3BBA740036AAF8 /* CellTests.swift */,
-				AAE6C2362A3CEB590036AAF8 /* Cell2Tests.swift */,
+				AAE6C22C2A3BBA740036AAF8 /* CellArrayTests.swift */,
+				AAE6C2362A3CEB590036AAF8 /* CellSetTests.swift */,
 			);
 			path = GameOfLifeTests;
 			sourceTree = "<group>";
 		};
-		AAE6C23B2A40DFC70036AAF8 /* Cell */ = {
+		AAE6C2422A4132B40036AAF8 /* BasicView */ = {
 			isa = PBXGroup;
 			children = (
-				AAE6C2342A3CDDDF0036AAF8 /* Cell2.swift */,
-				AAE6C2222A3B65C20036AAF8 /* Cell.swift */,
+				AAE6C2232A3B65C30036AAF8 /* BasicGridView.swift */,
+				AAE6C23C2A40E14F0036AAF8 /* BasicView.swift */,
 			);
-			path = Cell;
+			path = BasicView;
+			sourceTree = "<group>";
+		};
+		AAE6C2462A425FD10036AAF8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AAE6C2472A425FDB0036AAF8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AAE6C23E2A410C8D0036AAF8 /* TwoGroupView.swift */,
+				AAE6C2152A3B65AD0036AAF8 /* ContentView.swift */,
+				AAE6C2422A4132B40036AAF8 /* BasicView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AAE6C2482A425FE60036AAF8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AAE6C2342A3CDDDF0036AAF8 /* CellSetViewModel.swift */,
+				AAE6C2402A4123DC0036AAF8 /* CellSetForTwoGroupMode.swift */,
+				AAE6C2222A3B65C20036AAF8 /* CellArray.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,11 +256,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAE6C2162A3B65AD0036AAF8 /* ContentView.swift in Sources */,
-				AAE6C2352A3CDDDF0036AAF8 /* Cell2.swift in Sources */,
+				AAE6C2352A3CDDDF0036AAF8 /* CellSetViewModel.swift in Sources */,
 				AAE6C2142A3B65AD0036AAF8 /* GameOfLifeApp.swift in Sources */,
+				AAE6C23F2A410C8D0036AAF8 /* TwoGroupView.swift in Sources */,
 				AAE6C23D2A40E14F0036AAF8 /* BasicView.swift in Sources */,
-				AAE6C2252A3B65C30036AAF8 /* GridView.swift in Sources */,
-				AAE6C2242A3B65C30036AAF8 /* Cell.swift in Sources */,
+				AAE6C2252A3B65C30036AAF8 /* BasicGridView.swift in Sources */,
+				AAE6C2412A4123DC0036AAF8 /* CellSetForTwoGroupMode.swift in Sources */,
+				AAE6C2242A3B65C30036AAF8 /* CellArray.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,10 +270,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAE6C23A2A3D291D0036AAF8 /* Cell2.swift in Sources */,
-				AAE6C2372A3CEB590036AAF8 /* Cell2Tests.swift in Sources */,
-				AAE6C22D2A3BBA740036AAF8 /* CellTests.swift in Sources */,
-				AAE6C2332A3BBBCC0036AAF8 /* Cell.swift in Sources */,
+				AAE6C23A2A3D291D0036AAF8 /* CellSetViewModel.swift in Sources */,
+				AAE6C2372A3CEB590036AAF8 /* CellSetTests.swift in Sources */,
+				AAE6C22D2A3BBA740036AAF8 /* CellArrayTests.swift in Sources */,
+				AAE6C2332A3BBBCC0036AAF8 /* CellArray.swift in Sources */,
+				AAE6C2492A4260300036AAF8 /* CellSetForTwoGroupMode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

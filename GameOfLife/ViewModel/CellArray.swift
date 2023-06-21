@@ -8,7 +8,7 @@
 import Foundation
 
 /// Control the all the action of the cell
-class Cell: ObservableObject {
+class CellArray: ObservableObject {
     /// Store all the state (True = alive, False = dead)
     @Published var cellList: [[Bool]]
     /// The number of row
@@ -144,10 +144,15 @@ class Cell: ObservableObject {
     
     /// Generate random cell to the cell list
     public func randomGenerateCell() {
-        for _ in 0 ..< rowSize * colSize / 8 {
-            let x = Int.random(in: 0..<rowSize)
-            let y = Int.random(in: 0..<colSize)
-            setCellAlive(row: y, col: x)
+        let total = rowSize * colSize / 8
+        var count = 0
+        while (count < total) {
+            let row = Int.random(in: 0..<rowSize)
+            let col = Int.random(in: 0..<colSize)
+            if cellList[row][col] == false {
+                setCellAlive(row: row, col: col)
+                count += 1
+            }
         }
     }
     

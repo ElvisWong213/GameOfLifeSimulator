@@ -7,11 +7,11 @@
 
 import XCTest
 
-final class CellTests: XCTestCase {
-    private var cell: Cell!
+final class CellArrayTests: XCTestCase {
+    private var cell: CellArray!
 
     override func setUpWithError() throws {
-        cell = Cell(rowSize: 200, colSize: 200)
+        cell = CellArray(rowSize: 500, colSize: 500)
     }
 
     override func tearDownWithError() throws {

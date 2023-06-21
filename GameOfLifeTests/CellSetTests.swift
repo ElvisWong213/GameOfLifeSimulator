@@ -7,19 +7,15 @@
 
 import XCTest
 
-final class Cell2Tests: XCTestCase {
-    private var cell: Cell2!
+final class CellSetViewModelTests: XCTestCase {
+    private var cell: CellSetViewModel!
 
     override func setUpWithError() throws {
-        cell = Cell2(rowSize: 200, colSize: 200)
+        cell = CellSetViewModel(time: 0, rowSize: 500, colSize: 500)
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        cell.random()
     }
 
     func testUpdateCellPerformanceExample() throws {
