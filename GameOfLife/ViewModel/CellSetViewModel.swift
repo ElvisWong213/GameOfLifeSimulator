@@ -7,53 +7,17 @@
 
 import Foundation
 
-enum CellError: Error {
-    case rowIndexOutOfRange(message: String = "Row is out of range")
-    case colIndexOutOfRange(message: String = "Column is out of range")
-}
-
-class CellSetViewModel: ObservableObject {
+class CellSetViewModel: Cell, ObservableObject {
     @Published var cellSet: Set<MyCell>
     @Published var checkCellSet: Set<MyCell>
-    @Published var start: Bool
-    @Published var time: Float
-    @Published private(set) var rowSize: Int
-    @Published private(set) var colSize: Int
     
     init(cellSet: Set<MyCell> = Set<MyCell>(), checkCellSet: Set<MyCell> = Set<MyCell>(), start: Bool = false, time: Float, rowSize: Int, colSize: Int) {
         self.cellSet = cellSet
         self.checkCellSet = checkCellSet
-        self.start = start
-        self.time = time
-        self.rowSize = rowSize
-        self.colSize = colSize
+        super.init(start: start, time: time, rowSize: rowSize, colSize: colSize)
     }
     
-    public func getRowSize() -> Int {
-        return rowSize
-    }
-    
-    public func getColSize() -> Int {
-        return colSize
-    }
-    
-    public func toggleStart() {
-        start.toggle()
-    }
-    
-    public func getStart() -> Bool {
-        return start
-    }
-    
-    public func setTime(time: Float) {
-        self.time = time
-    }
-    
-    public func getTime() -> Float {
-        return time
-    }
-    
-    @discardableResult public func addCell(row: Int, col: Int) throws -> Bool {
+    @discardableResult public override func addCell(row: Int, col: Int) -> Bool {
         for r in row - 1 ... row + 1 {
             for c in col - 1 ... col + 1 {
                 if isCoordinateValid(row: r, col: c) {
@@ -64,7 +28,7 @@ class CellSetViewModel: ObservableObject {
         return cellSet.insert(MyCell(row: row, col: col)).inserted
     }
     
-    public func isCoordinateValid(row: Int, col: Int) -> Bool {
+    public override func isCoordinateValid(row: Int, col: Int) -> Bool {
         if (row < 0 || row > rowSize - 1) {
             return false
         }
@@ -78,11 +42,11 @@ class CellSetViewModel: ObservableObject {
         cellSet.remove(MyCell(row: row, col: col))
     }
     
-    public func isCellExist(row: Int, col: Int) -> Bool {
+    public override func isCellExist(row: Int, col: Int) -> Bool {
         return cellSet.contains(MyCell(row: row, col: col))
     }
     
-    public func countNeighbours(row: Int, col: Int) -> Int {
+    public override func countNeighbours(row: Int, col: Int) -> Int {
         var counter = 0
         
         for r in row - 1 ... row + 1 {
@@ -98,7 +62,7 @@ class CellSetViewModel: ObservableObject {
         return counter
     }
     
-    public func checkCellNextGeneration(row: Int, col: Int) throws -> Bool {
+    public override func checkCellNextGeneration(row: Int, col: Int) throws -> Bool {
         if (row > rowSize - 1 || row < 0) {
             throw CellError.rowIndexOutOfRange()
         }
@@ -126,7 +90,7 @@ class CellSetViewModel: ObservableObject {
         }
     }
     
-    public func updateCell() {
+    public override func updateCell() {
         var newSet = Set<MyCell>()
         var newCheckSet = Set<MyCell>()
         for coordinate in checkCellSet {
@@ -148,25 +112,20 @@ class CellSetViewModel: ObservableObject {
         usleep(useconds_t(self.time * 1000000))
     }
     
-    public func randomGenerateCell() {
+    public override func randomGenerateCell() {
         let total = rowSize * colSize / 8
         var count = 0
         while (count < total) {
             let row = Int.random(in: 0..<rowSize)
             let col = Int.random(in: 0..<colSize)
-            if try! addCell(row: row, col: col) {
+            if addCell(row: row, col: col) {
                 count += 1
             }
         }
     }
     
-    public func reset() {
+    public override func reset() {
         cellSet = Set<MyCell>()
         checkCellSet = Set<MyCell>()
-    }
-    
-    public func random() {
-        reset()
-        randomGenerateCell()
     }
 }

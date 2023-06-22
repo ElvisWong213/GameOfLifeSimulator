@@ -24,7 +24,7 @@ struct BasicGridView: View {
                                 if cellSetViewModel.isCellExist(row: row, col: col) {
                                     try! cellSetViewModel.removeCell(row: row, col: col)
                                 } else {
-                                    try! cellSetViewModel.addCell(row: row, col: col)
+                                    cellSetViewModel.addCell(row: row, col: col)
                                 }
                             }
                     }

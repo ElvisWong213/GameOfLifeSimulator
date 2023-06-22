@@ -8,10 +8,10 @@
 import XCTest
 
 final class CellArrayTests: XCTestCase {
-    private var cell: CellArray!
+    private var cell: CellArrayViewModel!
 
     override func setUpWithError() throws {
-        cell = CellArray(rowSize: 500, colSize: 500)
+        cell = CellArrayViewModel(rowSize: 500, colSize: 500)
     }
 
     override func tearDownWithError() throws {
@@ -33,4 +33,14 @@ final class CellArrayTests: XCTestCase {
         }
     }
 
+    func testUpdateCellPerformanceFillAllCell() throws {
+        for r in 0..<cell.getRowSize() {
+            for c in 0..<cell.getColSize() {
+                cell.setCellAlive(row: r, col: c)
+            }
+        }
+        measure {
+            cell.updateCell()
+        }
+    }
 }

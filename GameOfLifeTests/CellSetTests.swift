@@ -18,8 +18,19 @@ final class CellSetViewModelTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testUpdateCellPerformanceExample() throws {
+    func testUpdateCellPerformance() throws {
         cell.random()
+        measure {
+            cell.updateCell()
+        }
+    }
+    
+    func testUpdateCellPerformanceFillAllCell() throws {
+        for r in 0..<cell.rowSize {
+            for c in 0..<cell.colSize {
+                cell.addCell(row: r, col: c)
+            }
+        }
         measure {
             cell.updateCell()
         }

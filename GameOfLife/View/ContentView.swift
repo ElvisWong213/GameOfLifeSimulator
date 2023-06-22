@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var modes = ["Basic"]
-    @State var selectedMode = "Basic"
-    
     var body: some View {
         NavigationSplitView(
             sidebar: {
@@ -24,7 +21,7 @@ struct ContentView: View {
                 }
             }, detail: {
                 Text("Please select mode")
-        })
+            })
     }
 }
 
