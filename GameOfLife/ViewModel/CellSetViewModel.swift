@@ -10,14 +10,21 @@ import Foundation
 class CellSetViewModel: Cell, ObservableObject {
     @Published var cellSet: Set<MyCell>
     @Published var checkCellSet: Set<MyCell>
+    @Published var start: Bool
+    @Published var time: Float
+    let rowSize: Int
+    let colSize: Int
     
     init(cellSet: Set<MyCell> = Set<MyCell>(), checkCellSet: Set<MyCell> = Set<MyCell>(), start: Bool = false, time: Float, rowSize: Int, colSize: Int) {
         self.cellSet = cellSet
         self.checkCellSet = checkCellSet
-        super.init(start: start, time: time, rowSize: rowSize, colSize: colSize)
+        self.start = start
+        self.time = time
+        self.rowSize = rowSize
+        self.colSize = colSize
     }
     
-    @discardableResult public override func addCell(row: Int, col: Int) -> Bool {
+    @discardableResult public func addCell(row: Int, col: Int) -> Bool {
         for r in row - 1 ... row + 1 {
             for c in col - 1 ... col + 1 {
                 if isCoordinateValid(row: r, col: c) {
@@ -28,7 +35,7 @@ class CellSetViewModel: Cell, ObservableObject {
         return cellSet.insert(MyCell(row: row, col: col)).inserted
     }
     
-    public override func isCoordinateValid(row: Int, col: Int) -> Bool {
+    public func isCoordinateValid(row: Int, col: Int) -> Bool {
         if (row < 0 || row > rowSize - 1) {
             return false
         }
@@ -42,11 +49,11 @@ class CellSetViewModel: Cell, ObservableObject {
         cellSet.remove(MyCell(row: row, col: col))
     }
     
-    public override func isCellExist(row: Int, col: Int) -> Bool {
+    public func isCellExist(row: Int, col: Int) -> Bool {
         return cellSet.contains(MyCell(row: row, col: col))
     }
     
-    public override func countNeighbours(row: Int, col: Int) -> Int {
+    public func countNeighbours(row: Int, col: Int) -> Int {
         var counter = 0
         
         for r in row - 1 ... row + 1 {
@@ -62,7 +69,7 @@ class CellSetViewModel: Cell, ObservableObject {
         return counter
     }
     
-    public override func checkCellNextGeneration(row: Int, col: Int) throws -> Bool {
+    public func checkCellNextGeneration(row: Int, col: Int) throws -> Bool {
         if (row > rowSize - 1 || row < 0) {
             throw CellError.rowIndexOutOfRange()
         }
@@ -90,7 +97,7 @@ class CellSetViewModel: Cell, ObservableObject {
         }
     }
     
-    public override func updateCell() {
+    public func updateCell() {
         var newSet = Set<MyCell>()
         var newCheckSet = Set<MyCell>()
         for coordinate in checkCellSet {
@@ -112,7 +119,7 @@ class CellSetViewModel: Cell, ObservableObject {
         usleep(useconds_t(self.time * 1000000))
     }
     
-    public override func randomGenerateCell() {
+    public func randomGenerateCell() {
         let total = rowSize * colSize / 8
         var count = 0
         while (count < total) {
@@ -124,8 +131,15 @@ class CellSetViewModel: Cell, ObservableObject {
         }
     }
     
-    public override func reset() {
+    public func random() {
+        reset()
+        randomGenerateCell()
+    }
+    
+    public func reset() {
         cellSet = Set<MyCell>()
         checkCellSet = Set<MyCell>()
     }
+    
+    
 }

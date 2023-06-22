@@ -7,85 +7,27 @@
 
 import Foundation
 
-class Cell {
-    @Published var start: Bool
-    @Published var time: Float
-    @Published private(set) var rowSize: Int
-    @Published private(set) var colSize: Int
+protocol Cell {
+    var start: Bool { get set }
+    var time: Float { get set }
+    var rowSize: Int { get }
+    var colSize: Int { get } 
     
-    init(start: Bool, time: Float, rowSize: Int, colSize: Int) {
-        self.start = start
-        self.time = time
-        self.rowSize = rowSize
-        self.colSize = colSize
-    }
+    @discardableResult func addCell(row: Int, col: Int) -> Bool
     
-    public func getRowSize() -> Int {
-        return rowSize
-    }
+    func isCoordinateValid(row: Int, col: Int) -> Bool
     
-    public func getColSize() -> Int {
-        return colSize
-    }
+    func isCellExist(row: Int, col: Int) -> Bool
     
-    public func toggleStart() {
-        start.toggle()
-    }
+    func countNeighbours(row: Int, col: Int) -> Int 
     
-    public func getStart() -> Bool {
-        return start
-    }
+    func checkCellNextGeneration(row: Int, col: Int) throws -> Bool
     
-    public func setTime(time: Float) {
-        self.time = time
-    }
+    func updateCell()
     
-    public func getTime() -> Float {
-        return time
-    }
+    func reset()
     
-    public func randomGenerateCell() {
-        let total = rowSize * colSize / 8
-        var count = 0
-        while (count < total) {
-            let row = Int.random(in: 0..<rowSize)
-            let col = Int.random(in: 0..<colSize)
-            if addCell(row: row, col: col) {
-                count += 1
-            }
-        }
-    }
+    func randomGenerateCell()
     
-    public func random() {
-        reset()
-        randomGenerateCell()
-    }
-    
-    @discardableResult public func addCell(row: Int, col: Int) -> Bool {
-        fatalError("addCell(row:, col:) has not been implemented")
-    }
-    
-    public func isCoordinateValid(row: Int, col: Int) -> Bool {
-        fatalError("isCoordinateValid(row:, col:) has not been implemented")
-    }
-    
-    public func isCellExist(row: Int, col: Int) -> Bool {
-        fatalError("isCellExist(row:, col:) has not been implemented")
-    }
-    
-    public func countNeighbours(row: Int, col: Int) -> Int {
-        fatalError("countNeighbours(row:, col:) has not been implemented")
-    }
-    
-    public func checkCellNextGeneration(row: Int, col: Int) throws -> Bool {
-        fatalError("checkCellNextGeneration(row:, col:) has not been implemented")
-    }
-    
-    public func updateCell() {
-        fatalError("updateCell() has not been implemented")
-    }
-    
-    public func reset() {
-        fatalError("reset() has not been implemented")
-    }
+    func random()
 }

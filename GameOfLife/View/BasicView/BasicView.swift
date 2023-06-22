@@ -20,8 +20,8 @@ struct BasicView: View {
                     cellSetViewModel.start = false
                     cellSetViewModel.reset()
                 }
-                Button(cellSetViewModel.getStart() ? "Stop" : "Start") {
-                    cellSetViewModel.toggleStart()
+                Button(cellSetViewModel.start ? "Stop" : "Start") {
+                    cellSetViewModel.start.toggle()
                     cellSetViewModel.performUpdateCell()
                 }
                 Button("Random") {
@@ -32,7 +32,7 @@ struct BasicView: View {
             HStack {
                 Text("Speed: ")
                 Slider(value: $cellSetViewModel.time, in: 0.001...0.1)
-                Text("\(cellSetViewModel.getTime(), specifier: "%.2f") second")
+                Text("\(cellSetViewModel.time, specifier: "%.2f") second")
             }
             .frame(width: 200)
         }

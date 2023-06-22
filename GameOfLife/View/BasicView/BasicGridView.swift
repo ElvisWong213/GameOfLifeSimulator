@@ -13,9 +13,9 @@ struct BasicGridView: View {
             
     var body: some View {
         LazyVStack(spacing: 1) {
-            ForEach(0..<cellSetViewModel.getRowSize(), id: \.self) { row in
+            ForEach(0..<cellSetViewModel.rowSize, id: \.self) { row in
                 LazyHStack(spacing: 1) {
-                    ForEach(0..<cellSetViewModel.getColSize(), id: \.self) { col in
+                    ForEach(0..<cellSetViewModel.colSize, id: \.self) { col in
                         Rectangle()
                             .foregroundColor(cellSetViewModel.isCellExist(row: row, col: col) ? .black : .gray)
                             .frame(width: cellSize, height: cellSize)
