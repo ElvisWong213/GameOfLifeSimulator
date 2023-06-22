@@ -17,11 +17,13 @@ protocol Cell {
     
     func isCoordinateValid(row: Int, col: Int) -> Bool
     
-    func isCellExist(row: Int, col: Int) -> Bool
+    func isCellAlive(row: Int, col: Int) -> Bool
     
     func countNeighbours(row: Int, col: Int) -> Int 
     
     func checkCellNextGeneration(row: Int, col: Int) throws -> Bool
+    
+    func performUpdateCell()
     
     func updateCell()
     

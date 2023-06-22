@@ -17,11 +17,11 @@ struct BasicGridView: View {
                 LazyHStack(spacing: 1) {
                     ForEach(0..<cellSetViewModel.colSize, id: \.self) { col in
                         Rectangle()
-                            .foregroundColor(cellSetViewModel.isCellExist(row: row, col: col) ? .black : .gray)
+                            .foregroundColor(cellSetViewModel.isCellAlive(row: row, col: col) ? .black : .gray)
                             .frame(width: cellSize, height: cellSize)
                             .fixedSize()
                             .onTapGesture {
-                                if cellSetViewModel.isCellExist(row: row, col: col) {
+                                if cellSetViewModel.isCellAlive(row: row, col: col) {
                                     try! cellSetViewModel.removeCell(row: row, col: col)
                                 } else {
                                     cellSetViewModel.addCell(row: row, col: col)

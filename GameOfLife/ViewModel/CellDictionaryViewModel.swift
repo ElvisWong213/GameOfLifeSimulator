@@ -1,23 +1,21 @@
 //
-//  Cell2.swift
+//  CellHashTableViewModel.swift
 //  GameOfLife
 //
-//  Created by Elvis on 16/06/2023.
+//  Created by Elvis on 22/06/2023.
 //
 
 import Foundation
 
-class CellSetViewModel: Cell, ObservableObject {
-    @Published var cellSet: Set<MyCell>
-    @Published var checkCellSet: Set<MyCell>
+class CellDictionaryViewModel: Cell, ObservableObject {
+    @Published var cells: Dictionary<MyCell, Bool>
     @Published var start: Bool
     @Published var time: Float
     let rowSize: Int
     let colSize: Int
     
-    init(cellSet: Set<MyCell> = Set<MyCell>(), checkCellSet: Set<MyCell> = Set<MyCell>(), start: Bool = false, time: Float, rowSize: Int, colSize: Int) {
-        self.cellSet = cellSet
-        self.checkCellSet = checkCellSet
+    init(cells: Dictionary<MyCell, Bool> = Dictionary<MyCell, Bool>(), start: Bool = false, time: Float, rowSize: Int, colSize: Int) {
+        self.cells = cells
         self.start = start
         self.time = time
         self.rowSize = rowSize
@@ -25,14 +23,20 @@ class CellSetViewModel: Cell, ObservableObject {
     }
     
     @discardableResult public func addCell(row: Int, col: Int) -> Bool {
+        var isAdd = false
         for r in row - 1 ... row + 1 {
             for c in col - 1 ... col + 1 {
                 if isCoordinateValid(row: r, col: c) {
-                    checkCellSet.insert(MyCell(row: r, col: c))
+                    if (r == row && c == col) {
+                        isAdd = true
+                        cells[MyCell(row: row, col: col)] = true
+                    } else {
+                        cells[MyCell(row: row, col: col)] = false
+                    }
                 }
             }
         }
-        return cellSet.insert(MyCell(row: row, col: col)).inserted
+        return isAdd
     }
     
     public func isCoordinateValid(row: Int, col: Int) -> Bool {
@@ -45,12 +49,8 @@ class CellSetViewModel: Cell, ObservableObject {
         return true
     }
     
-    public func removeCell(row: Int, col: Int) throws {
-        cellSet.remove(MyCell(row: row, col: col))
-    }
-    
     public func isCellAlive(row: Int, col: Int) -> Bool {
-        return cellSet.contains(MyCell(row: row, col: col))
+        return cells[MyCell(row: row, col: col)] ?? false
     }
     
     public func countNeighbours(row: Int, col: Int) -> Int {
@@ -98,25 +98,32 @@ class CellSetViewModel: Cell, ObservableObject {
     }
     
     public func updateCell() {
-        var newSet = Set<MyCell>()
-        var newCheckSet = Set<MyCell>()
-        for coordinate in checkCellSet {
-            if try! checkCellNextGeneration(row: coordinate.row, col: coordinate.col) {
-                for r in coordinate.row - 1 ... coordinate.row + 1 {
-                    for c in coordinate.col - 1 ... coordinate.col + 1 {
+        var newCells = Dictionary<MyCell, Bool>()
+        cells.forEach({(key, value) in
+            let row = key.row
+            let col = key.col
+            if try! checkCellNextGeneration(row: row, col: col) {
+                for r in row - 1 ... row + 1 {
+                    for c in col - 1 ... col + 1 {
                         if isCoordinateValid(row: r, col: c) {
-                            newCheckSet.insert(MyCell(row: r, col: c))
+                            if (r == row && c == col) {
+                                newCells[MyCell(row: row, col: col)] = true
+                            } else {
+                                newCells[MyCell(row: row, col: col)] = false
+                            }
                         }
                     }
                 }
-                newSet.insert(coordinate)
             }
-        }
+        })
         DispatchQueue.main.async {
-            self.cellSet = newSet
-            self.checkCellSet = newCheckSet
+            self.cells = newCells
         }
         usleep(useconds_t(self.time * 1000000))
+    }
+    
+    public func reset() {
+        cells = Dictionary<MyCell, Bool>()
     }
     
     public func randomGenerateCell() {
@@ -135,11 +142,4 @@ class CellSetViewModel: Cell, ObservableObject {
         reset()
         randomGenerateCell()
     }
-    
-    public func reset() {
-        cellSet = Set<MyCell>()
-        checkCellSet = Set<MyCell>()
-    }
-    
-    
 }
