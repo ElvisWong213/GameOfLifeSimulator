@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct BasicGridView: View {
-    @EnvironmentObject var cellSetViewModel: CellSetViewModel
+    @EnvironmentObject var cellViewModel: Cell
     @Binding var cellSize: CGFloat
             
     var body: some View {
         LazyVStack(spacing: 1) {
-            ForEach(0..<cellSetViewModel.rowSize, id: \.self) { row in
+            ForEach(0..<cellViewModel.rowSize, id: \.self) { row in
                 LazyHStack(spacing: 1) {
-                    ForEach(0..<cellSetViewModel.colSize, id: \.self) { col in
+                    ForEach(0..<cellViewModel.colSize, id: \.self) { col in
                         Rectangle()
-                            .foregroundColor(cellSetViewModel.isCellAlive(row: row, col: col) ? .black : .gray)
+                            .foregroundColor(cellViewModel.showColor(row: row, col: col))
                             .frame(width: cellSize, height: cellSize)
                             .fixedSize()
                             .onTapGesture {
-                                if cellSetViewModel.isCellAlive(row: row, col: col) {
-                                    try! cellSetViewModel.removeCell(row: row, col: col)
+                                if cellViewModel.isCellAlive(row: row, col: col) {
+                                    cellViewModel.removeCell(row: row, col: col)
                                 } else {
-                                    cellSetViewModel.addCell(row: row, col: col)
+                                    cellViewModel.addCell(row: row, col: col)
                                 }
                             }
                     }

@@ -8,31 +8,31 @@
 import SwiftUI
 
 struct BasicView: View {
-    @StateObject private var cellSetViewModel = CellSetViewModel(time: 0.1, rowSize: 50, colSize: 50)
+    @StateObject private var cellViewModel: Cell = CellSetViewModel(time: 0.1, rowSize: 50, colSize: 50)
     @State private var size: CGFloat = 10.0
     
     var body: some View {
         VStack {
             BasicGridView(cellSize: $size)
-                .environmentObject(cellSetViewModel)
+                .environmentObject(cellViewModel)
             HStack {
                 Button("Reset") {
-                    cellSetViewModel.start = false
-                    cellSetViewModel.reset()
+                    cellViewModel.start = false
+                    cellViewModel.reset()
                 }
-                Button(cellSetViewModel.start ? "Stop" : "Start") {
-                    cellSetViewModel.start.toggle()
-                    cellSetViewModel.performUpdateCell()
+                Button(cellViewModel.start ? "Stop" : "Start") {
+                    cellViewModel.start.toggle()
+                    cellViewModel.performUpdateCell()
                 }
                 Button("Random") {
-                    cellSetViewModel.random()
+                    cellViewModel.random()
                 }
                 
             }
             HStack {
                 Text("Speed: ")
-                Slider(value: $cellSetViewModel.time, in: 0.001...0.1)
-                Text("\(cellSetViewModel.time, specifier: "%.2f") second")
+                Slider(value: $cellViewModel.time, in: 0...0.1)
+                Text("\(cellViewModel.time, specifier: "%.2f") second")
             }
             .frame(width: 200)
         }

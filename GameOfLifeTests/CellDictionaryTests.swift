@@ -7,15 +7,20 @@
 
 import XCTest
 
-final class CellDictionaryViewModelTests: XCTestCase {
+final class CellDictionaryTests: XCTestCase {
     var cell: CellDictionaryViewModel!
 
     override func setUpWithError() throws {
-        cell = CellDictionaryViewModel(start: true, time: 0, rowSize: 500, colSize: 500)
+        cell = CellDictionaryViewModel(time: 0, rowSize: 100, colSize: 100)
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+    
+    func testAdd() throws {
+        cell.addCell(row: 0, col: 0)
+        XCTAssertTrue(cell.isCellAlive(row: 0, col: 0))
     }
     
     func testUpdateCellPerformance() throws {

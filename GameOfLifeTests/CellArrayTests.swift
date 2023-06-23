@@ -11,7 +11,7 @@ final class CellArrayTests: XCTestCase {
     private var cell: CellArrayViewModel!
 
     override func setUpWithError() throws {
-        cell = CellArrayViewModel(rowSize: 500, colSize: 500)
+        cell = CellArrayViewModel(rowSize: 100, colSize: 100)
     }
 
     override func tearDownWithError() throws {

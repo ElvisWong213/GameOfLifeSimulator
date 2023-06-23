@@ -15,7 +15,13 @@ struct ContentView: View {
                     NavigationLink {
                         BasicView()
                     } label: {
-                        Label("Basic view", systemImage: "app.fill")
+                        Label("Basic", systemImage: "app.fill")
+                            .font(.title3)
+                    }
+                    NavigationLink {
+                        TwoGroupView()
+                    } label: {
+                        Label("Two Group", systemImage: "app.fill")
                             .font(.title3)
                     }
                 }

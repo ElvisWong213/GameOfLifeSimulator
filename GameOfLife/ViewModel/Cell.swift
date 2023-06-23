@@ -6,30 +6,100 @@
 //
 
 import Foundation
+import SwiftUI
 
-protocol Cell {
-    var start: Bool { get set }
-    var time: Float { get set }
-    var rowSize: Int { get }
-    var colSize: Int { get } 
+class Cell: ObservableObject {
+    @Published var start: Bool
+    @Published var time: Float
+    let rowSize: Int
+    let colSize: Int
     
-    @discardableResult func addCell(row: Int, col: Int) -> Bool
     
-    func isCoordinateValid(row: Int, col: Int) -> Bool
+    init(start: Bool, time: Float, rowSize: Int, colSize: Int) {
+        if type(of: self) == Cell.self {
+           fatalError("Cell is an abstract class and cannot be instantiated directly.")
+       }
+        self.start = start
+        self.time = time
+        self.rowSize = rowSize
+        self.colSize = colSize
+    }
     
-    func isCellAlive(row: Int, col: Int) -> Bool
+    @discardableResult func addCell(row: Int, col: Int) -> Bool {
+        fatalError("Subclasses must override abstractMethod.")
+    }
     
-    func countNeighbours(row: Int, col: Int) -> Int 
+    func removeCell(row: Int, col: Int) {
+        fatalError("Subclasses must override abstractMethod.")
+    }
     
-    func checkCellNextGeneration(row: Int, col: Int) throws -> Bool
+    func isCoordinateValid(row: Int, col: Int) -> Bool {
+        if (row < 0 || row > rowSize - 1) {
+            return false
+        }
+        if (col < 0 || col > colSize - 1) {
+            return false
+        }
+        return true
+    }
     
-    func performUpdateCell()
+    func isCellAlive(row: Int, col: Int) -> Bool {
+        fatalError("Subclasses must override abstractMethod.")
+    }
     
-    func updateCell()
+    func countNeighbours(row: Int, col: Int) -> Int {
+        var counter = 0
+        
+        for r in row - 1 ... row + 1 {
+            for c in col - 1 ... col + 1 {
+                if (r, c) == (row, col) {
+                    continue
+                }
+                if isCellAlive(row: r, col: c) {
+                    counter += 1
+                }
+            }
+        }
+        return counter
+    }
     
-    func reset()
+    func checkCellNextGeneration(row: Int, col: Int) throws -> Bool {
+        fatalError("Subclasses must override abstractMethod.")
+    }
     
-    func randomGenerateCell()
+    func performUpdateCell() {
+        fatalError("Subclasses must override abstractMethod.")
+    }
     
-    func random()
+    func updateCell() {
+        fatalError("Subclasses must override abstractMethod.")
+    }
+    
+    func reset() {
+        fatalError("Subclasses must override abstractMethod.")
+    }
+    
+    func showColor(row: Int, col: Int) -> Color {
+        if isCellAlive(row: row, col: col) {
+            return .black
+        }
+        return .gray
+    }
+    
+    func randomGenerateCell() {
+        let total = rowSize * colSize / 8
+        var count = 0
+        while (count < total) {
+            let row = Int.random(in: 0..<rowSize)
+            let col = Int.random(in: 0..<colSize)
+            if addCell(row: row, col: col) {
+                count += 1
+            }
+        }
+    }
+    
+    func random() {
+        reset()
+        randomGenerateCell()
+    }
 }

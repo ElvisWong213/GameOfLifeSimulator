@@ -7,69 +7,36 @@
 
 import Foundation
 
-class CellSetViewModel: Cell, ObservableObject {
-    @Published var cellSet: Set<MyCell>
-    @Published var checkCellSet: Set<MyCell>
-    @Published var start: Bool
-    @Published var time: Float
-    let rowSize: Int
-    let colSize: Int
+class CellSetViewModel: Cell {
+    @Published var cellSet: Set<CellCoordinate>
+    @Published var checkCellSet: Set<CellCoordinate>
     
-    init(cellSet: Set<MyCell> = Set<MyCell>(), checkCellSet: Set<MyCell> = Set<MyCell>(), start: Bool = false, time: Float, rowSize: Int, colSize: Int) {
+    init(cellSet: Set<CellCoordinate> = Set<CellCoordinate>(), checkCellSet: Set<CellCoordinate> = Set<CellCoordinate>(), start: Bool = false, time: Float, rowSize: Int, colSize: Int) {
         self.cellSet = cellSet
         self.checkCellSet = checkCellSet
-        self.start = start
-        self.time = time
-        self.rowSize = rowSize
-        self.colSize = colSize
+        super.init(start: start, time: time, rowSize: rowSize, colSize: colSize)
     }
     
-    @discardableResult public func addCell(row: Int, col: Int) -> Bool {
+    @discardableResult public override func addCell(row: Int, col: Int) -> Bool {
         for r in row - 1 ... row + 1 {
             for c in col - 1 ... col + 1 {
                 if isCoordinateValid(row: r, col: c) {
-                    checkCellSet.insert(MyCell(row: r, col: c))
+                    checkCellSet.insert(CellCoordinate(row: r, col: c))
                 }
             }
         }
-        return cellSet.insert(MyCell(row: row, col: col)).inserted
+        return cellSet.insert(CellCoordinate(row: row, col: col)).inserted
     }
     
-    public func isCoordinateValid(row: Int, col: Int) -> Bool {
-        if (row < 0 || row > rowSize - 1) {
-            return false
-        }
-        if (col < 0 || col > colSize - 1) {
-            return false
-        }
-        return true
+    public override func removeCell(row: Int, col: Int) {
+        cellSet.remove(CellCoordinate(row: row, col: col))
     }
     
-    public func removeCell(row: Int, col: Int) throws {
-        cellSet.remove(MyCell(row: row, col: col))
+    public override func isCellAlive(row: Int, col: Int) -> Bool {
+        return cellSet.contains(CellCoordinate(row: row, col: col))
     }
     
-    public func isCellAlive(row: Int, col: Int) -> Bool {
-        return cellSet.contains(MyCell(row: row, col: col))
-    }
-    
-    public func countNeighbours(row: Int, col: Int) -> Int {
-        var counter = 0
-        
-        for r in row - 1 ... row + 1 {
-            for c in col - 1 ... col + 1 {
-                if (r, c) == (row, col) {
-                    continue
-                }
-                if isCellAlive(row: r, col: c) {
-                    counter += 1
-                }
-            }
-        }
-        return counter
-    }
-    
-    public func checkCellNextGeneration(row: Int, col: Int) throws -> Bool {
+    public override func checkCellNextGeneration(row: Int, col: Int) throws -> Bool {
         if (row > rowSize - 1 || row < 0) {
             throw CellError.rowIndexOutOfRange()
         }
@@ -89,7 +56,7 @@ class CellSetViewModel: Cell, ObservableObject {
         return false
     }
     
-    public func performUpdateCell() {
+    public override func performUpdateCell() {
         DispatchQueue.global(qos: .userInitiated).async {
             while (self.start) {
                 self.updateCell()
@@ -97,15 +64,15 @@ class CellSetViewModel: Cell, ObservableObject {
         }
     }
     
-    public func updateCell() {
-        var newSet = Set<MyCell>()
-        var newCheckSet = Set<MyCell>()
+    public override func updateCell() {
+        var newSet = Set<CellCoordinate>()
+        var newCheckSet = Set<CellCoordinate>()
         for coordinate in checkCellSet {
             if try! checkCellNextGeneration(row: coordinate.row, col: coordinate.col) {
                 for r in coordinate.row - 1 ... coordinate.row + 1 {
                     for c in coordinate.col - 1 ... coordinate.col + 1 {
                         if isCoordinateValid(row: r, col: c) {
-                            newCheckSet.insert(MyCell(row: r, col: c))
+                            newCheckSet.insert(CellCoordinate(row: r, col: c))
                         }
                     }
                 }
@@ -119,27 +86,8 @@ class CellSetViewModel: Cell, ObservableObject {
         usleep(useconds_t(self.time * 1000000))
     }
     
-    public func randomGenerateCell() {
-        let total = rowSize * colSize / 8
-        var count = 0
-        while (count < total) {
-            let row = Int.random(in: 0..<rowSize)
-            let col = Int.random(in: 0..<colSize)
-            if addCell(row: row, col: col) {
-                count += 1
-            }
-        }
+    public override func reset() {
+        cellSet = Set<CellCoordinate>()
+        checkCellSet = Set<CellCoordinate>()
     }
-    
-    public func random() {
-        reset()
-        randomGenerateCell()
-    }
-    
-    public func reset() {
-        cellSet = Set<MyCell>()
-        checkCellSet = Set<MyCell>()
-    }
-    
-    
 }
