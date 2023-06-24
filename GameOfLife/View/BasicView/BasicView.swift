@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BasicView: View {
-    @StateObject private var cellViewModel: Cell = CellSetViewModel(time: 0.1, rowSize: 50, colSize: 50)
+    @EnvironmentObject var cellViewModel: Cell
     @State private var size: CGFloat = 10.0
     
     var body: some View {
@@ -35,6 +35,13 @@ struct BasicView: View {
                 Text("\(cellViewModel.time, specifier: "%.2f") second")
             }
             .frame(width: 200)
+        }
+        .onAppear() {
+            print("appear")
+        }
+        .onDisappear() {
+            cellViewModel.start = false
+            print("dissappear")
         }
     }
 }

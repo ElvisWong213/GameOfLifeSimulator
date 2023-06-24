@@ -25,7 +25,7 @@ class Cell: ObservableObject {
         self.colSize = colSize
     }
     
-    @discardableResult func addCell(row: Int, col: Int) -> Bool {
+    @discardableResult func addCell(row: Int, col: Int, team: Teams = .None) -> Bool {
         fatalError("Subclasses must override abstractMethod.")
     }
     
@@ -43,11 +43,11 @@ class Cell: ObservableObject {
         return true
     }
     
-    func isCellAlive(row: Int, col: Int) -> Bool {
+    func isCellAlive(row: Int, col: Int, team: Teams = .None) -> Bool {
         fatalError("Subclasses must override abstractMethod.")
     }
     
-    func countNeighbours(row: Int, col: Int) -> Int {
+    func countNeighbours(row: Int, col: Int, team: Teams = .None) -> Int {
         var counter = 0
         
         for r in row - 1 ... row + 1 {
@@ -63,12 +63,29 @@ class Cell: ObservableObject {
         return counter
     }
     
-    func checkCellNextGeneration(row: Int, col: Int) throws -> Bool {
-        fatalError("Subclasses must override abstractMethod.")
+    func checkCellNextGeneration(row: Int, col: Int, team: Teams = Teams.None) throws -> Bool {
+        if !(isCoordinateValid(row: row, col: col)) {
+            throw CellError.indexOutOfRange()
+        }
+        let numberOfNeighbours = countNeighbours(row: row, col: col)
+        if isCellAlive(row: row, col: col) {
+            if numberOfNeighbours >= 2 && numberOfNeighbours <= 3  {
+                return true
+            }
+        } else {
+            if numberOfNeighbours == 3 {
+                return true
+            }
+        }
+        return false
     }
     
     func performUpdateCell() {
-        fatalError("Subclasses must override abstractMethod.")
+        DispatchQueue.global(qos: .userInitiated).async {
+            while (self.start) {
+                self.updateCell()
+            }
+        }
     }
     
     func updateCell() {

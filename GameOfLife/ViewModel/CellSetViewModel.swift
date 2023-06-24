@@ -17,7 +17,7 @@ class CellSetViewModel: Cell {
         super.init(start: start, time: time, rowSize: rowSize, colSize: colSize)
     }
     
-    @discardableResult public override func addCell(row: Int, col: Int) -> Bool {
+    @discardableResult public override func addCell(row: Int, col: Int, team: Teams = .None) -> Bool {
         for r in row - 1 ... row + 1 {
             for c in col - 1 ... col + 1 {
                 if isCoordinateValid(row: r, col: c) {
@@ -32,39 +32,14 @@ class CellSetViewModel: Cell {
         cellSet.remove(CellCoordinate(row: row, col: col))
     }
     
-    public override func isCellAlive(row: Int, col: Int) -> Bool {
+    public override func isCellAlive(row: Int, col: Int, team: Teams = .None) -> Bool {
         return cellSet.contains(CellCoordinate(row: row, col: col))
     }
     
-    public override func checkCellNextGeneration(row: Int, col: Int) throws -> Bool {
-        if (row > rowSize - 1 || row < 0) {
-            throw CellError.rowIndexOutOfRange()
-        }
-        if (col > colSize - 1 || row < 0) {
-            throw CellError.colIndexOutOfRange()
-        }
-        let numberOfNeighbours = countNeighbours(row: row, col: col)
-        if isCellAlive(row: row, col: col) {
-            if numberOfNeighbours >= 2 && numberOfNeighbours <= 3  {
-                return true
-            }
-        } else {
-            if numberOfNeighbours == 3 {
-                return true
-            }
-        }
-        return false
-    }
-    
-    public override func performUpdateCell() {
-        DispatchQueue.global(qos: .userInitiated).async {
-            while (self.start) {
-                self.updateCell()
-            }
-        }
-    }
-    
     public override func updateCell() {
+        if !start {
+            return
+        }
         var newSet = Set<CellCoordinate>()
         var newCheckSet = Set<CellCoordinate>()
         for coordinate in checkCellSet {
