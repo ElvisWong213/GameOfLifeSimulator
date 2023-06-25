@@ -1,20 +1,17 @@
 //
-//  BasicView.swift
+//  BasicControlView.swift
 //  GameOfLife
 //
-//  Created by Elvis on 19/06/2023.
+//  Created by Elvis on 24/06/2023.
 //
 
 import SwiftUI
 
-struct BasicView: View {
+struct ControlerView: View {
     @EnvironmentObject var cellViewModel: Cell
-    @State private var size: CGFloat = 10.0
     
     var body: some View {
         VStack {
-            BasicGridView(cellSize: $size)
-                .environmentObject(cellViewModel)
             HStack {
                 Button("Reset") {
                     cellViewModel.start = false
@@ -34,20 +31,15 @@ struct BasicView: View {
                 Slider(value: $cellViewModel.time, in: 0...0.1)
                 Text("\(cellViewModel.time, specifier: "%.2f") second")
             }
-            .frame(width: 200)
         }
-        .onAppear() {
-            print("appear")
-        }
-        .onDisappear() {
-            cellViewModel.start = false
-            print("dissappear")
-        }
+        .frame(width: 200)
     }
 }
 
-struct BasicView_Previews: PreviewProvider {
+struct BasicControlView_Previews: PreviewProvider {
     static var previews: some View {
-        BasicView()
+        @StateObject var cell: Cell = CellSetViewModel(time: 0.1, rowSize: 50, colSize: 50)
+        ControlerView()
+            .environmentObject(cell)
     }
 }

@@ -33,6 +33,14 @@ class Cell: ObservableObject {
         fatalError("Subclasses must override abstractMethod.")
     }
     
+    func viewTapCell(row: Int, col: Int) {
+        if isCellAlive(row: row, col: col) {
+            removeCell(row: row, col: col)
+        } else {
+            addCell(row: row, col: col)
+        }
+    }
+    
     func isCoordinateValid(row: Int, col: Int) -> Bool {
         if (row < 0 || row > rowSize - 1) {
             return false

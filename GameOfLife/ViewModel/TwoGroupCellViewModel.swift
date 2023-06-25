@@ -10,9 +10,11 @@ import SwiftUI
 
 class TwoGroupCellViewModel: Cell {
     @Published var cells: Dictionary<CellCoordinate, Teams>
+    @Published var team: Teams
     
     override init(start: Bool = false, time: Float, rowSize: Int, colSize: Int) {
         self.cells = Dictionary<CellCoordinate, Teams>()
+        self.team = .Host
         super.init(start: start, time: time, rowSize: rowSize, colSize: colSize)
     }
     
@@ -27,7 +29,7 @@ class TwoGroupCellViewModel: Cell {
                     if (r == row && c == col) || isCellAlive(row: r, col: c, team: team) {
                         isAdd = true
                         cells[CellCoordinate(row: r, col: c)] = team
-                    } else {
+                    } else if !isCellAlive(row: r, col: c, team: .Host) && !isCellAlive(row: r, col: c, team: .Guest) {
                         cells[CellCoordinate(row: r, col: c)] = Teams.None
                     }
                 }
@@ -40,12 +42,13 @@ class TwoGroupCellViewModel: Cell {
         cells.removeValue(forKey: CellCoordinate(row: row, col: col))
     }
     
-//    func editable(row: Int, col: Int) -> Bool {
-//        if isCellAlive(row: row, col: col, team: .None) || cells[CellCoordinate(row: row, col: col)] == nil {
-//            return true
-//        }
-//        return false
-//    }
+    override func viewTapCell(row: Int, col: Int) {
+        if isCellAlive(row: row, col: col, team: .Host) || isCellAlive(row: row, col: col, team: .Guest) {
+            removeCell(row: row, col: col)
+        } else {
+            addCell(row: row, col: col, team: self.team)
+        }
+    }
     
     override func isCellAlive(row: Int, col: Int, team: Teams) -> Bool {
         if cells[CellCoordinate(row: row, col: col)] == .None{
@@ -176,6 +179,10 @@ class TwoGroupCellViewModel: Cell {
     
     override func reset() {
         cells = Dictionary<CellCoordinate, Teams>()
+    }
+    
+    func changeTeam(team: Teams) {
+        self.team = team
     }
     
 }

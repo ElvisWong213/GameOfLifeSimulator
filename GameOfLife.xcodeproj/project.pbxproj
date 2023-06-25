@@ -22,12 +22,15 @@
 		AA90C0322A450DAE006147F8 /* TwoGroupCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA90C0312A450DAE006147F8 /* TwoGroupCellTests.swift */; };
 		AA90C0392A45DAD8006147F8 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA90C0382A45DAD8006147F8 /* Teams.swift */; };
 		AA90C03A2A45E86B006147F8 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA90C0382A45DAD8006147F8 /* Teams.swift */; };
+		AA90C03C2A47A132006147F8 /* ControlerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA90C03B2A47A132006147F8 /* ControlerView.swift */; };
+		AA90C03E2A47A1BB006147F8 /* TwoGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA90C03D2A47A1BB006147F8 /* TwoGroupView.swift */; };
+		AA90C0402A47A307006147F8 /* ChooseTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA90C03F2A47A307006147F8 /* ChooseTeamView.swift */; };
 		AAE6C2142A3B65AD0036AAF8 /* GameOfLifeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2132A3B65AD0036AAF8 /* GameOfLifeApp.swift */; };
 		AAE6C2162A3B65AD0036AAF8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2152A3B65AD0036AAF8 /* ContentView.swift */; };
 		AAE6C2182A3B65AE0036AAF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAE6C2172A3B65AE0036AAF8 /* Assets.xcassets */; };
 		AAE6C21B2A3B65AE0036AAF8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAE6C21A2A3B65AE0036AAF8 /* Preview Assets.xcassets */; };
 		AAE6C2242A3B65C30036AAF8 /* CellArrayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2222A3B65C20036AAF8 /* CellArrayViewModel.swift */; };
-		AAE6C2252A3B65C30036AAF8 /* BasicGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2232A3B65C30036AAF8 /* BasicGridView.swift */; };
+		AAE6C2252A3B65C30036AAF8 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2232A3B65C30036AAF8 /* GridView.swift */; };
 		AAE6C22D2A3BBA740036AAF8 /* CellArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C22C2A3BBA740036AAF8 /* CellArrayTests.swift */; };
 		AAE6C2352A3CDDDF0036AAF8 /* CellSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2342A3CDDDF0036AAF8 /* CellSetViewModel.swift */; };
 		AAE6C2372A3CEB590036AAF8 /* CellSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE6C2362A3CEB590036AAF8 /* CellSetTests.swift */; };
@@ -54,6 +57,9 @@
 		AA90C0242A43E895006147F8 /* CellDictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellDictionaryTests.swift; sourceTree = "<group>"; };
 		AA90C0312A450DAE006147F8 /* TwoGroupCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoGroupCellTests.swift; sourceTree = "<group>"; };
 		AA90C0382A45DAD8006147F8 /* Teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
+		AA90C03B2A47A132006147F8 /* ControlerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlerView.swift; sourceTree = "<group>"; };
+		AA90C03D2A47A1BB006147F8 /* TwoGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoGroupView.swift; sourceTree = "<group>"; };
+		AA90C03F2A47A307006147F8 /* ChooseTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseTeamView.swift; sourceTree = "<group>"; };
 		AAE6C2102A3B65AD0036AAF8 /* GameOfLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE6C2132A3B65AD0036AAF8 /* GameOfLifeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOfLifeApp.swift; sourceTree = "<group>"; };
 		AAE6C2152A3B65AD0036AAF8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,7 +67,7 @@
 		AAE6C21A2A3B65AE0036AAF8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AAE6C21C2A3B65AE0036AAF8 /* GameOfLife.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GameOfLife.entitlements; sourceTree = "<group>"; };
 		AAE6C2222A3B65C20036AAF8 /* CellArrayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellArrayViewModel.swift; sourceTree = "<group>"; };
-		AAE6C2232A3B65C30036AAF8 /* BasicGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicGridView.swift; sourceTree = "<group>"; };
+		AAE6C2232A3B65C30036AAF8 /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		AAE6C22A2A3BBA740036AAF8 /* GameOfLifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameOfLifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE6C22C2A3BBA740036AAF8 /* CellArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellArrayTests.swift; sourceTree = "<group>"; };
 		AAE6C2342A3CDDDF0036AAF8 /* CellSetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSetViewModel.swift; sourceTree = "<group>"; };
@@ -140,13 +146,14 @@
 			path = GameOfLifeTests;
 			sourceTree = "<group>";
 		};
-		AAE6C2422A4132B40036AAF8 /* BasicView */ = {
+		AAE6C2422A4132B40036AAF8 /* Elements */ = {
 			isa = PBXGroup;
 			children = (
-				AAE6C2232A3B65C30036AAF8 /* BasicGridView.swift */,
-				AAE6C23C2A40E14F0036AAF8 /* BasicView.swift */,
+				AAE6C2232A3B65C30036AAF8 /* GridView.swift */,
+				AA90C03F2A47A307006147F8 /* ChooseTeamView.swift */,
+				AA90C03B2A47A132006147F8 /* ControlerView.swift */,
 			);
-			path = BasicView;
+			path = Elements;
 			sourceTree = "<group>";
 		};
 		AAE6C2462A425FD10036AAF8 /* Model */ = {
@@ -161,8 +168,10 @@
 		AAE6C2472A425FDB0036AAF8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AA90C03D2A47A1BB006147F8 /* TwoGroupView.swift */,
+				AAE6C23C2A40E14F0036AAF8 /* BasicView.swift */,
 				AAE6C2152A3B65AD0036AAF8 /* ContentView.swift */,
-				AAE6C2422A4132B40036AAF8 /* BasicView */,
+				AAE6C2422A4132B40036AAF8 /* Elements */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -283,13 +292,16 @@
 				AAE6C2162A3B65AD0036AAF8 /* ContentView.swift in Sources */,
 				AAE6C2352A3CDDDF0036AAF8 /* CellSetViewModel.swift in Sources */,
 				AAE6C2142A3B65AD0036AAF8 /* GameOfLifeApp.swift in Sources */,
+				AA90C03E2A47A1BB006147F8 /* TwoGroupView.swift in Sources */,
+				AA90C0402A47A307006147F8 /* ChooseTeamView.swift in Sources */,
 				AAE6C23D2A40E14F0036AAF8 /* BasicView.swift in Sources */,
-				AAE6C2252A3B65C30036AAF8 /* BasicGridView.swift in Sources */,
+				AAE6C2252A3B65C30036AAF8 /* GridView.swift in Sources */,
 				AA90C0232A43E88B006147F8 /* CellDictionaryViewModel.swift in Sources */,
 				AA90C0392A45DAD8006147F8 /* Teams.swift in Sources */,
 				AA90C0212A43E86B006147F8 /* CellError.swift in Sources */,
 				AA26DE852A428B98000C5051 /* CellCoordinate.swift in Sources */,
 				AA90C01F2A43E847006147F8 /* Cell.swift in Sources */,
+				AA90C03C2A47A132006147F8 /* ControlerView.swift in Sources */,
 				AAE6C2412A4123DC0036AAF8 /* TwoGroupCellViewModel.swift in Sources */,
 				AAE6C2242A3B65C30036AAF8 /* CellArrayViewModel.swift in Sources */,
 			);

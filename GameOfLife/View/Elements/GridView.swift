@@ -7,25 +7,20 @@
 
 import SwiftUI
 
-struct BasicGridView: View {
+struct GridView: View {
     @EnvironmentObject var cellViewModel: Cell
     @Binding var cellSize: CGFloat
             
     var body: some View {
-        LazyVStack(spacing: 1) {
+        VStack(spacing: 1) {
             ForEach(0..<cellViewModel.rowSize, id: \.self) { row in
-                LazyHStack(spacing: 1) {
+                HStack(spacing: 1) {
                     ForEach(0..<cellViewModel.colSize, id: \.self) { col in
                         Rectangle()
                             .foregroundColor(cellViewModel.showColor(row: row, col: col))
                             .frame(width: cellSize, height: cellSize)
-                            .fixedSize()
                             .onTapGesture {
-                                if cellViewModel.isCellAlive(row: row, col: col) {
-                                    cellViewModel.removeCell(row: row, col: col)
-                                } else {
-                                    cellViewModel.addCell(row: row, col: col)
-                                }
+                                cellViewModel.viewTapCell(row: row, col: col)
                             }
                     }
                 }
@@ -37,6 +32,8 @@ struct BasicGridView: View {
 
 struct GridView_Previews: PreviewProvider {
     static var previews: some View {
-        BasicGridView(cellSize: .constant(10.0))
+        @StateObject var cell: Cell = CellSetViewModel(time: 0.1, rowSize: 10, colSize: 10)
+        GridView(cellSize: .constant(10.0))
+            .environmentObject(cell)
     }
 }
