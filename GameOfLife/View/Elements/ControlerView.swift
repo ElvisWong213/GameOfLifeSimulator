@@ -31,6 +31,32 @@ struct ControlerView: View {
                 Slider(value: $cellViewModel.time, in: 0...0.1)
                 Text("\(cellViewModel.time, specifier: "%.2f") second")
             }
+            HStack {
+                Button("Save") {
+                    cellViewModel.start = false
+                    let savePanel = NSSavePanel()
+                    savePanel.allowedContentTypes = [.json]
+                    if savePanel.runModal() == .OK {
+                        guard let fileUrl = savePanel.url else {
+                            return
+                        }
+                        cellViewModel.save(path: fileUrl)
+                    }
+                }
+                Button("Load") {
+                    cellViewModel.start = false
+                    let loadPanel = NSOpenPanel()
+                    loadPanel.canChooseDirectories = false
+                    loadPanel.allowsMultipleSelection = false
+                    loadPanel.allowedContentTypes = [.json]
+                    if loadPanel.runModal() == .OK {
+                        guard let fileUrl = loadPanel.url else {
+                            return
+                        }
+                        cellViewModel.load(path: fileUrl)
+                    }
+                }
+            }
         }
         .frame(width: 200)
     }

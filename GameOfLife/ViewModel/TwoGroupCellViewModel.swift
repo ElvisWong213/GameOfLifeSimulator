@@ -18,6 +18,26 @@ class TwoGroupCellViewModel: Cell {
         super.init(start: start, time: time, rowSize: rowSize, colSize: colSize)
     }
     
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        cells = try container.decode(Dictionary<CellCoordinate, Teams>.self, forKey: .cells)
+        team = try container.decode(Teams.self, forKey: .team)
+        try super.init(from: decoder)
+    }
+    
+    private enum CodingKeys: CodingKey {
+        case cells, team
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try super.encode(to: encoder)
+        try container.encode(cells, forKey: .cells)
+        try container.encode(team, forKey: .team)
+    }
+    
     @discardableResult override func addCell(row: Int, col: Int, team: Teams) -> Bool {
         if isCellAlive(row: row, col: col, team: team) {
             return false
@@ -183,6 +203,20 @@ class TwoGroupCellViewModel: Cell {
     
     func changeTeam(team: Teams) {
         self.team = team
+    }
+    
+    override func load(path: URL) {
+        do {
+            let data = try Data(contentsOf: path)
+            let decoder = JSONDecoder()
+            let continer = try decoder.decode(TwoGroupCellViewModel.self, from: data)
+            
+            super.load(path: path)
+            cells = continer.cells
+            team = continer.team
+        } catch {
+            print("Can't load file")
+        }
     }
     
 }

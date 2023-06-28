@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA0EC1512A490F1900DAB899 /* SaveLoadFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EC1502A490F1900DAB899 /* SaveLoadFile.swift */; };
+		AA0EC1532A4A81FE00DAB899 /* FileManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EC1522A4A81FE00DAB899 /* FileManagerTests.swift */; };
+		AA0EC1542A4A821C00DAB899 /* SaveLoadFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0EC1502A490F1900DAB899 /* SaveLoadFile.swift */; };
 		AA26DE852A428B98000C5051 /* CellCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA26DE842A428B98000C5051 /* CellCoordinate.swift */; };
 		AA26DE862A428BA0000C5051 /* CellCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA26DE842A428B98000C5051 /* CellCoordinate.swift */; };
 		AA90C01F2A43E847006147F8 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA90C01E2A43E847006147F8 /* Cell.swift */; };
@@ -49,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA0EC1502A490F1900DAB899 /* SaveLoadFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveLoadFile.swift; sourceTree = "<group>"; };
+		AA0EC1522A4A81FE00DAB899 /* FileManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerTests.swift; sourceTree = "<group>"; };
 		AA26DE832A42841D000C5051 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		AA26DE842A428B98000C5051 /* CellCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellCoordinate.swift; sourceTree = "<group>"; };
 		AA90C01E2A43E847006147F8 /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
@@ -142,6 +147,7 @@
 				AAE6C2362A3CEB590036AAF8 /* CellSetTests.swift */,
 				AA90C0242A43E895006147F8 /* CellDictionaryTests.swift */,
 				AA90C0312A450DAE006147F8 /* TwoGroupCellTests.swift */,
+				AA0EC1522A4A81FE00DAB899 /* FileManagerTests.swift */,
 			);
 			path = GameOfLifeTests;
 			sourceTree = "<group>";
@@ -159,6 +165,8 @@
 		AAE6C2462A425FD10036AAF8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AA90C01E2A43E847006147F8 /* Cell.swift */,
+				AA0EC1502A490F1900DAB899 /* SaveLoadFile.swift */,
 				AA26DE842A428B98000C5051 /* CellCoordinate.swift */,
 				AA90C0382A45DAD8006147F8 /* Teams.swift */,
 			);
@@ -180,7 +188,6 @@
 			isa = PBXGroup;
 			children = (
 				AA90C0202A43E86B006147F8 /* CellError.swift */,
-				AA90C01E2A43E847006147F8 /* Cell.swift */,
 				AA90C0222A43E88B006147F8 /* CellDictionaryViewModel.swift */,
 				AAE6C2342A3CDDDF0036AAF8 /* CellSetViewModel.swift */,
 				AAE6C2402A4123DC0036AAF8 /* TwoGroupCellViewModel.swift */,
@@ -297,6 +304,7 @@
 				AAE6C23D2A40E14F0036AAF8 /* BasicView.swift in Sources */,
 				AAE6C2252A3B65C30036AAF8 /* GridView.swift in Sources */,
 				AA90C0232A43E88B006147F8 /* CellDictionaryViewModel.swift in Sources */,
+				AA0EC1512A490F1900DAB899 /* SaveLoadFile.swift in Sources */,
 				AA90C0392A45DAD8006147F8 /* Teams.swift in Sources */,
 				AA90C0212A43E86B006147F8 /* CellError.swift in Sources */,
 				AA26DE852A428B98000C5051 /* CellCoordinate.swift in Sources */,
@@ -311,8 +319,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0EC1532A4A81FE00DAB899 /* FileManagerTests.swift in Sources */,
 				AA90C03A2A45E86B006147F8 /* Teams.swift in Sources */,
 				AA90C02A2A43E899006147F8 /* CellDictionaryViewModel.swift in Sources */,
+				AA0EC1542A4A821C00DAB899 /* SaveLoadFile.swift in Sources */,
 				AAE6C2372A3CEB590036AAF8 /* CellSetTests.swift in Sources */,
 				AAE6C22D2A3BBA740036AAF8 /* CellArrayTests.swift in Sources */,
 				AA90C02B2A43E899006147F8 /* CellSetViewModel.swift in Sources */,
@@ -470,6 +480,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.GameOfLife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -499,6 +510,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.GameOfLife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -515,6 +527,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = elvis.GameOfLifeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -531,6 +544,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = elvis.GameOfLifeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

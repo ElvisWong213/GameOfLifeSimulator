@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Teams {
+enum Teams: Codable {
     case None
     case Host
     case Guest

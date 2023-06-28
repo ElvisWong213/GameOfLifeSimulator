@@ -8,6 +8,7 @@
 import Foundation
 
 class CellSetViewModel: Cell {
+    
     @Published var cellSet: Set<CellCoordinate>
     @Published var checkCellSet: Set<CellCoordinate>
     
@@ -15,6 +16,26 @@ class CellSetViewModel: Cell {
         self.cellSet = cellSet
         self.checkCellSet = checkCellSet
         super.init(start: start, time: time, rowSize: rowSize, colSize: colSize)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let continer = try decoder.container(keyedBy: CodingKeys.self)
+
+        cellSet = try continer.decode(Set<CellCoordinate>.self, forKey: .cellSet)
+        checkCellSet = try continer.decode(Set<CellCoordinate>.self, forKey: .checkCellSet)
+        try super.init(from: decoder)
+    }
+    
+    private enum CodingKeys: CodingKey {
+        case cellSet, checkCellSet
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try super.encode(to: encoder)
+        try container.encode(cellSet, forKey: .cellSet)
+        try container.encode(checkCellSet, forKey: .checkCellSet)
     }
     
     @discardableResult public override func addCell(row: Int, col: Int, team: Teams = .None) -> Bool {
@@ -64,5 +85,19 @@ class CellSetViewModel: Cell {
     public override func reset() {
         cellSet = Set<CellCoordinate>()
         checkCellSet = Set<CellCoordinate>()
+    }
+    
+    override func load(path: URL) {
+        do {
+            let data = try Data(contentsOf: path)
+            let decoder = JSONDecoder()
+            let continer = try decoder.decode(CellSetViewModel.self, from: data)
+            
+            super.load(path: path)
+            cellSet = continer.cellSet
+            checkCellSet = continer.checkCellSet
+        } catch {
+            print("Can't load file")
+        }
     }
 }

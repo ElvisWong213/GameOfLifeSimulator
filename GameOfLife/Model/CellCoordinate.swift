@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CellCoordinate: Hashable {
+struct CellCoordinate: Hashable, Codable {
     let row: Int
     let col: Int
 }

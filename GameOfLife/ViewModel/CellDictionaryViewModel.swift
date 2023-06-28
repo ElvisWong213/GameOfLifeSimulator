@@ -15,6 +15,24 @@ class CellDictionaryViewModel: Cell {
         super.init(start: start, time: time, rowSize: rowSize, colSize: colSize)
     }
     
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        cells = try container.decode(Dictionary<CellCoordinate, Bool>.self, forKey: .cells)
+        try super.init(from: decoder)
+    }
+    
+    private enum CodingKeys: CodingKey {
+        case cells
+    }
+    
+    override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try super.encode(to: encoder)
+        try container.encode(cells, forKey: .cells)
+    }
+    
     @discardableResult public override func addCell(row: Int, col: Int, team: Teams = Teams.None) -> Bool {
         var isAdd = false
         for r in row - 1 ... row + 1 {
@@ -71,5 +89,18 @@ class CellDictionaryViewModel: Cell {
     
     public override func reset() {
         cells = Dictionary<CellCoordinate, Bool>()
+    }
+    
+    override func load(path: URL) {
+        do {
+            let data = try Data(contentsOf: path)
+            let decoder = JSONDecoder()
+            let continer = try decoder.decode(CellDictionaryViewModel.self, from: data)
+            
+            super.load(path: path)
+            cells = continer.cells
+        } catch {
+            print("Can't load file")
+        }
     }
 }

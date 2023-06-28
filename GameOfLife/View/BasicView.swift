@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BasicView: View {
-    @StateObject var cellViewModel: Cell = CellSetViewModel(time: 0.1, rowSize: 50, colSize: 50)
+    @StateObject var cellViewModel: Cell = CellDictionaryViewModel(time: 0.1, rowSize: 50, colSize: 50)
     @State private var size: CGFloat = 10.0
     
     var body: some View {

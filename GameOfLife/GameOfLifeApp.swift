@@ -13,5 +13,6 @@ struct GameOfLifeApp: App {
         WindowGroup {
             ContentView()
         }
+        .windowResizability(.contentSize)
     }
 }

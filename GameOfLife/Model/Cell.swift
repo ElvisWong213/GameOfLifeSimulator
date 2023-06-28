@@ -8,11 +8,11 @@
 import Foundation
 import SwiftUI
 
-class Cell: ObservableObject {
+class Cell: ObservableObject, Codable, SaveLoadFile {
     @Published var start: Bool
     @Published var time: Float
-    let rowSize: Int
-    let colSize: Int
+    var rowSize: Int
+    var colSize: Int
     
     
     init(start: Bool, time: Float, rowSize: Int, colSize: Int) {
@@ -23,6 +23,28 @@ class Cell: ObservableObject {
         self.time = time
         self.rowSize = rowSize
         self.colSize = colSize
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let continer = try decoder.container(keyedBy: CodingKeys.self)
+        
+        start = try continer.decode(Bool.self, forKey: .start)
+        time = try continer.decode(Float.self, forKey: .time)
+        rowSize = try continer.decode(Int.self, forKey: .rowSize)
+        colSize = try continer.decode(Int.self, forKey: .colSize)
+    }
+    
+    private enum CodingKeys: CodingKey {
+        case start, time, rowSize, colSize
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(start, forKey: .start)
+        try container.encode(time, forKey: .time)
+        try container.encode(rowSize, forKey: .rowSize)
+        try container.encode(colSize, forKey: .colSize)
     }
     
     @discardableResult func addCell(row: Int, col: Int, team: Teams = .None) -> Bool {
@@ -127,4 +149,32 @@ class Cell: ObservableObject {
         reset()
         randomGenerateCell()
     }
+    
+    func save(path: URL) {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        
+        do {
+            let data = try encoder.encode(self)
+            try data.write(to: path)
+        } catch {
+            print("Unable to encode")
+        }
+    }
+    
+    func load(path: URL) {
+        do {
+            let data = try Data(contentsOf: path)
+            let decoder = JSONDecoder()
+            let continer = try decoder.decode(Cell.self, from: data)
+            
+            start = continer.start
+            time = continer.time
+            rowSize = continer.rowSize
+            colSize = continer.colSize
+        } catch {
+            print("Can't load file")
+        }
+    }
+    
 }
