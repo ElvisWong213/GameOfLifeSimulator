@@ -16,11 +16,13 @@ struct ChooseTeamView: View {
                 cellViewModel.changeTeam(team: .Host)
             }
             .background(cellViewModel.team == .Host ? .blue : .clear)
+            Spacer()
             Button("Red") {
                 cellViewModel.changeTeam(team: .Guest)
             }
             .background(cellViewModel.team == .Guest ? .red : .clear)
         }
+        .buttonStyle(.plain)
         .fixedSize()
     }
 }
