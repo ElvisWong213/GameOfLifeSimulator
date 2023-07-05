@@ -197,7 +197,7 @@ class TwoGroupCellViewModel: Cell {
         }
     }
     
-    override func reset() {
+    override func clear() {
         cells = Dictionary<CellCoordinate, Teams>()
     }
     

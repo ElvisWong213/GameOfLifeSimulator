@@ -14,12 +14,15 @@ struct TwoGroupView: View {
     var body: some View {
         VStack {
             HStack() {
+                Spacer()
                 GridView(cellSize: $size)
                     .environmentObject(cellViewModel)
                 ChooseTeamView()
                     .environmentObject(cellViewModel as! TwoGroupCellViewModel)
+                Spacer()
             }
             ControlerView()
+                .padding()
                 .environmentObject(cellViewModel)
         }
         .onDisappear() {

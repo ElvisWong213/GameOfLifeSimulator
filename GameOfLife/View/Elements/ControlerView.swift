@@ -13,9 +13,9 @@ struct ControlerView: View {
     var body: some View {
         VStack {
             HStack {
-                Button("Reset") {
+                Button("Clear") {
+                    cellViewModel.clear()
                     cellViewModel.start = false
-                    cellViewModel.reset()
                 }
                 Button(cellViewModel.start ? "Stop" : "Start") {
                     cellViewModel.start.toggle()

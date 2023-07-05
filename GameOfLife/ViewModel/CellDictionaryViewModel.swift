@@ -87,7 +87,7 @@ class CellDictionaryViewModel: Cell {
         usleep(useconds_t(self.time * 1000000))
     }
     
-    public override func reset() {
+    public override func clear() {
         cells = Dictionary<CellCoordinate, Bool>()
     }
     

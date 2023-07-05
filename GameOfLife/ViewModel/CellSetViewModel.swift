@@ -82,7 +82,7 @@ class CellSetViewModel: Cell {
         usleep(useconds_t(self.time * 1000000))
     }
     
-    public override func reset() {
+    public override func clear() {
         cellSet = Set<CellCoordinate>()
         checkCellSet = Set<CellCoordinate>()
     }

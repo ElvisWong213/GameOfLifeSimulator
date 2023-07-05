@@ -122,7 +122,7 @@ class Cell: ObservableObject, Codable, SaveLoadFile {
         fatalError("Subclasses must override abstractMethod.")
     }
     
-    func reset() {
+    func clear() {
         fatalError("Subclasses must override abstractMethod.")
     }
     
@@ -146,7 +146,7 @@ class Cell: ObservableObject, Codable, SaveLoadFile {
     }
     
     func random() {
-        reset()
+        clear()
         randomGenerateCell()
     }
     
