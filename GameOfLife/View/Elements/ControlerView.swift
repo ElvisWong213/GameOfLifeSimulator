@@ -40,7 +40,7 @@ struct ControlerView: View {
                         guard let fileUrl = savePanel.url else {
                             return
                         }
-                        cellViewModel.save(path: fileUrl)
+                        cellViewModel.save(path: fileUrl.absoluteString)
                     }
                 }
                 Button("Load") {
@@ -53,7 +53,7 @@ struct ControlerView: View {
                         guard let fileUrl = loadPanel.url else {
                             return
                         }
-                        cellViewModel.load(path: fileUrl)
+                        cellViewModel.load(path: fileUrl.absoluteString)
                     }
                 }
             }

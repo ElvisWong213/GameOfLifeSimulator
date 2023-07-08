@@ -13,10 +13,18 @@ struct BasicView: View {
     
     var body: some View {
         VStack {
-            GridView(cellSize: $size)
-                .environmentObject(cellViewModel)
+            HStack {
+                Spacer()
+                GridView(cellSize: .constant(size))
+                    .padding()
+                    .environmentObject(cellViewModel)
+                Library()
+                    .padding()
+                Spacer()
+            }
             ControlerView()
                 .environmentObject(cellViewModel)
+                .padding()
         }
         .onDisappear() {
             cellViewModel.start = false

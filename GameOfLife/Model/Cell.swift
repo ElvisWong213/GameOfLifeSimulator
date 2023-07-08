@@ -150,21 +150,28 @@ class Cell: ObservableObject, Codable, SaveLoadFile {
         randomGenerateCell()
     }
     
-    func save(path: URL) {
+    func save(path: String) -> Bool {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
-        
+        guard let url = URL(string: path) else {
+            return false
+        }
         do {
             let data = try encoder.encode(self)
-            try data.write(to: path)
+            try data.write(to: url)
         } catch {
             print("Unable to encode")
+            return false
         }
+        return true
     }
     
-    func load(path: URL) {
+    func load(path: String) {
+        guard let url = URL(string: path) else {
+            return
+        }
         do {
-            let data = try Data(contentsOf: path)
+            let data = try Data(contentsOf: url)
             let decoder = JSONDecoder()
             let continer = try decoder.decode(Cell.self, from: data)
             

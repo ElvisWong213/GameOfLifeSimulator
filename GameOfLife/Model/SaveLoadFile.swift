@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SaveLoadFile {
-    func save(path: URL)
+    func save(path: String) -> Bool
     
-    func load(path: URL)
+    func load(path: String)
 }

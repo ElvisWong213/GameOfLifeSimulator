@@ -87,9 +87,12 @@ class CellSetViewModel: Cell {
         checkCellSet = Set<CellCoordinate>()
     }
     
-    override func load(path: URL) {
+    override func load(path: String) {
+        guard let url = URL(string: path) else {
+            return
+        }
         do {
-            let data = try Data(contentsOf: path)
+            let data = try Data(contentsOf: url)
             let decoder = JSONDecoder()
             let continer = try decoder.decode(CellSetViewModel.self, from: data)
             
