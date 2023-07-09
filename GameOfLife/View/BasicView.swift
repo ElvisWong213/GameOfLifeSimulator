@@ -18,11 +18,11 @@ struct BasicView: View {
                 GridView(cellSize: .constant(size))
                     .padding()
                     .environmentObject(cellViewModel)
-                Library()
+                CellsLibrary()
                     .padding()
                 Spacer()
             }
-            ControlerView()
+            MyControler()
                 .environmentObject(cellViewModel)
                 .padding()
         }

@@ -21,7 +21,7 @@ struct TwoGroupView: View {
                     .environmentObject(cellViewModel as! TwoGroupCellViewModel)
                 Spacer()
             }
-            ControlerView()
+            MyControler()
                 .padding()
                 .environmentObject(cellViewModel)
         }

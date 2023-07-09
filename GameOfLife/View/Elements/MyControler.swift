@@ -1,5 +1,5 @@
 //
-//  BasicControlView.swift
+//  MyControler.swift
 //  GameOfLife
 //
 //  Created by Elvis on 24/06/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ControlerView: View {
+struct MyControler: View {
     @EnvironmentObject var cellViewModel: Cell
     
     var body: some View {
@@ -65,7 +65,7 @@ struct ControlerView: View {
 struct BasicControlView_Previews: PreviewProvider {
     static var previews: some View {
         @StateObject var cell: Cell = CellSetViewModel(time: 0.1, rowSize: 50, colSize: 50)
-        ControlerView()
+        MyControler()
             .environmentObject(cell)
     }
 }

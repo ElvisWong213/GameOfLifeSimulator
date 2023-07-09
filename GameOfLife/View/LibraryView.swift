@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct LibraryView: View {
+    @StateObject var cellsFiles = CellsFiles()
     
     var body: some View {
         NavigationStack {
             VStack {
-                Library()
+                CellsLibrary()
+                    .environmentObject(cellsFiles)
                 HStack {
                     NavigationLink("Add") {
                         SetUpNewElementView()
                     }
                     Button("Remove") {
-                        
+                        cellsFiles.removeFile()
+                        cellsFiles.loadFile()
                     }
                 }
                 .padding()
